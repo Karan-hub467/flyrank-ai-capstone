@@ -4,7 +4,14 @@ This repository contains my capstone project for the FlyRank AI Internship.
 
 ## Project Overview
 
-This project is being developed as part of the FlyRank AI Internship program. It demonstrates my use of modern development tools, Git, GitHub, and AI-assisted development workflows.
+This capstone documents a professional, AI-assisted development workflow rather than a single product feature. It focuses on:
+
+- Writing clean, maintainable JavaScript with Node.js
+- Using Git and GitHub for version control and collaboration
+- Following Conventional Commits
+- Using Cursor as a development assistant, with human review before every commit
+
+Application features will be added as the internship progresses.
 
 ## Tech Stack
 
