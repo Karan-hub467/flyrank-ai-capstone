@@ -1,41 +1,11 @@
-# Project Instructions
+## Project Rules
 
-## Project
+1. Forms must use controlled inputs and must provide clear validation messages for invalid or missing values.
 
-This repository is the FlyRank AI Internship Capstone project.
+2. Every form input must have an accessible label and support keyboard navigation with visible focus states.
 
-## Stack
+3. Important user-facing functionality must have tests covering successful behavior, validation errors, and important edge cases.
 
-- Node.js
-- JavaScript
-- Git
-- GitHub
-- Cursor
+4. AI-generated code must be reviewed before committing, and tests must be run after implementation.
 
-## Code Conventions
-
-- Write clean, readable, and maintainable code.
-- Use meaningful variable and function names.
-- Keep functions focused and reasonably small.
-- Avoid unnecessary dependencies.
-- Follow existing project patterns when adding new code.
-- Review AI-generated code before accepting or committing it.
-
-## Git Conventions
-
-Use Conventional Commits for all commit messages.
-
-Examples:
-
-- `feat: add new feature`
-- `fix: resolve application bug`
-- `docs: update documentation`
-- `chore: update project configuration`
-
-## AI-Assisted Development
-
-Cursor may be used to assist with coding, documentation, debugging, and project organization. AI-generated changes should be reviewed and understood before they are committed.
-
-## General Instructions
-
-Before making significant changes, inspect the existing project structure and relevant files. Keep changes focused on the requested task and avoid modifying unrelated files.
+5. Avoid unnecessary dependencies and keep new code consistent with the existing project structure.
