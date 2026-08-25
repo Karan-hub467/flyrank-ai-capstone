@@ -1,0 +1,12 @@
+{
+  "name": "flyrank-ai-capstone",
+  "version": "1.0.0",
+  "description": "FlyRank AI Internship Capstone",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Karan Kumar",
+  "license": "MIT"
+}
