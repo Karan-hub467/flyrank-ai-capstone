@@ -1,38 +1,16 @@
-# FlyRank AI Capstone
+# React + Vite
 
-This repository contains my capstone project for the FlyRank AI Internship.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Project Overview
+Currently, two official plugins are available:
 
-This capstone documents a professional, AI-assisted development workflow rather than a single product feature. It focuses on:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-- Writing clean, maintainable JavaScript with Node.js
-- Using Git and GitHub for version control and collaboration
-- Following Conventional Commits
-- Using Cursor as a development assistant, with human review before every commit
+## React Compiler
 
-Application features will be added as the internship progresses.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Tech Stack
+## Expanding the ESLint configuration
 
-- Node.js
-- JavaScript
-- Git
-- GitHub
-- Cursor
-
-## Development Conventions
-
-- Use clear and maintainable code.
-- Follow consistent naming conventions.
-- Use Git for version control.
-- Follow Conventional Commits for commit messages.
-- Use AI-assisted development responsibly and review generated changes before committing.
-
-## Project Status
-
-🚧 Initial setup in progress.
-
-## Author
-
-Karan Kumar
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
