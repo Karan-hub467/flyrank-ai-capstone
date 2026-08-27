@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useChat } from "@ai-sdk/react";
 
 const movies = [
   {
@@ -45,12 +46,78 @@ const movies = [
   },
 ];
 
+function ToolState({ part }) {
+  const state = part.state;
+
+  if (state === "input-streaming") {
+    return (
+      <div className="tool-state tool-streaming">
+        <strong>🔄 Preparing movie search...</strong>
+        <p>Building the tool input.</p>
+      </div>
+    );
+  }
+
+  if (state === "input-available") {
+    return (
+      <div className="tool-state tool-input">
+        <strong>🔎 Searching movie database</strong>
+        <p>
+          Movie: <b>{part.input?.title || "Preparing search..."}</b>
+        </p>
+      </div>
+    );
+  }
+
+  if (state === "output-available") {
+    const movie = part.output?.movie;
+
+    return (
+      <div className="tool-state tool-output">
+        <strong>🎬 Movie Found</strong>
+
+        {movie ? (
+          <div className="ai-movie-card">
+            <div className="ai-movie-poster">🎬</div>
+            <div>
+              <h3>{movie.title}</h3>
+              <p>
+                {movie.year} • {movie.genre}
+              </p>
+              <strong>⭐ {movie.rating}</strong>
+              <p>{movie.description}</p>
+            </div>
+          </div>
+        ) : (
+          <p>No movie data returned.</p>
+        )}
+      </div>
+    );
+  }
+
+  if (state === "output-error") {
+    return (
+      <div className="tool-state tool-error">
+        <strong>⚠️ Movie search failed</strong>
+        <p>{part.errorText || "The movie could not be found."}</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 function App() {
   const [accountCreated, setAccountCreated] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [search, setSearch] = useState("");
+  const [prompt, setPrompt] = useState("");
+
+  const { messages, sendMessage, status } = useChat({
+    api: "http://localhost:3001/api/chat",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,6 +125,18 @@ function App() {
     if (name && email && password) {
       setAccountCreated(true);
     }
+  };
+
+  const handleAsk = (e) => {
+    e.preventDefault();
+
+    if (!prompt.trim()) return;
+
+    sendMessage({
+      text: prompt,
+    });
+
+    setPrompt("");
   };
 
   const filteredMovies = movies.filter((movie) =>
@@ -127,6 +206,42 @@ function App() {
           />
         </div>
 
+        <section className="ai-assistant">
+          <h2>🤖 AI Movie Assistant</h2>
+          <p>Ask about a movie and I'll search the movie database.</p>
+
+          <form onSubmit={handleAsk} className="ai-form">
+            <input
+              type="text"
+              placeholder="Try: Tell me about Inception"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+            />
+
+            <button type="submit" disabled={status === "streaming"}>
+              {status === "streaming" ? "Thinking..." : "Ask AI"}
+            </button>
+          </form>
+
+          <div className="tool-results">
+            {messages.map((message) => (
+              <div key={message.id}>
+                {message.parts?.map((part, index) => {
+                  if (part.type === "text") {
+                    return <p key={index}>{part.text}</p>;
+                  }
+
+                  if (part.type?.startsWith("tool-")) {
+                    return <ToolState key={index} part={part} />;
+                  }
+
+                  return null;
+                })}
+              </div>
+            ))}
+          </div>
+        </section>
+
         <h2>Popular Movies</h2>
 
         <div className="movie-grid">
@@ -154,3 +269,4 @@ function App() {
 }
 
 export default App;
+ 
