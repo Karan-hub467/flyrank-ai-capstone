@@ -145,14 +145,15 @@ function App() {
 
   if (!accountCreated) {
     return (
-      <div className="login-page">
+      <main className="login-page">
         <div className="login-card">
           <h1>MovieHub</h1>
           <p>Create your account to discover amazing movies</p>
 
           <form onSubmit={handleSubmit}>
-            <label>Full Name</label>
+            <label htmlFor="full-name">Full Name</label>
             <input
+              id="full-name"
               type="text"
               placeholder="Enter your name"
               value={name}
@@ -160,8 +161,9 @@ function App() {
               required
             />
 
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               placeholder="Enter your email"
               value={email}
@@ -169,8 +171,9 @@ function App() {
               required
             />
 
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               placeholder="Create a password"
               value={password}
@@ -178,10 +181,15 @@ function App() {
               required
             />
 
-            <button type="submit">Create Account</button>
+            <button
+              type="submit"
+              aria-label="Create MovieHub account"
+            >
+              Create Account
+            </button>
           </form>
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -195,9 +203,13 @@ function App() {
       <main className="movie-content">
         <div className="hero">
           <h2>Discover Your Next Favorite Movie</h2>
-          <p>Explore popular movies and find something great to watch.</p>
+          <p>
+            Explore popular movies and find something great to watch.
+          </p>
 
+          <label htmlFor="movie-search">Search movies</label>
           <input
+            id="movie-search"
             className="search-box"
             type="search"
             placeholder="Search movies..."
@@ -208,17 +220,28 @@ function App() {
 
         <section className="ai-assistant">
           <h2>🤖 AI Movie Assistant</h2>
-          <p>Ask about a movie and I'll search the movie database.</p>
+          <p>
+            Ask about a movie and I'll search the movie database.
+          </p>
 
           <form onSubmit={handleAsk} className="ai-form">
+            <label htmlFor="ai-movie-prompt">
+              Ask the AI about a movie
+            </label>
+
             <input
+              id="ai-movie-prompt"
               type="text"
               placeholder="Try: Tell me about Inception"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
 
-            <button type="submit" disabled={status === "streaming"}>
+            <button
+              type="submit"
+              aria-label="Ask AI about the movie"
+              disabled={status === "streaming"}
+            >
               {status === "streaming" ? "Thinking..." : "Ask AI"}
             </button>
           </form>
@@ -269,4 +292,3 @@ function App() {
 }
 
 export default App;
- 
